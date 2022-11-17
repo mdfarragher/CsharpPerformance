@@ -3,31 +3,35 @@ using BenchmarkDotNet.Attributes;
 
 namespace AvoidBoxing
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
+    [CsvExporter]
 	public class Benchmarks
 	{
-		// constants
-		private const int repetitions = 1000000;
+		// ==============================================================================
+		// Benchmarks
+		//
+		// Complete this benchmark class so that you can measure the performance of:
+		//   - The unoptimized code
+		//   - The optimized code
+		//
+		// How much faster can you make the code?
+		// ==============================================================================
+
+		private const int Repetitions = 1000000;
 
         [Benchmark]
-		public void MeasureA() 
+		public void Unoptimized() 
 		{
-			int a = 1;
-			for (int i = 0; i < repetitions; i++) 
+			object a = 1;
+			for (int i = 0; i < Repetitions; i++) 
 			{
-				a = a + 1;
+				a = (int)a + 1;
 			}
 		}
 
         [Benchmark]
-		public void MeasureB() 
+		public void Optimized() 
 		{
-			object a = 1;
-			for (int i = 0; i < repetitions; i++) 
-			{
-				a = (int)a + 1;
-			}
+			// Put your optimized code here
 		}
 	}
 }

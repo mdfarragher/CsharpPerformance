@@ -4,10 +4,19 @@ using BenchmarkDotNet.Attributes;
 
 namespace Exceptions
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
+    [CsvExporter]
     public class Benchmarks
 	{
+		// ==============================================================================
+		// Benchmarks
+		//
+		// Complete this benchmark class so that you can measure the performance of:
+		//   - The unoptimized code
+		//   - The optimized code
+		//
+		// How much faster can you make the code?
+		// ==============================================================================
+
 		// constants
         [Params(1000000)]
 		public int ListSize;
@@ -40,7 +49,7 @@ namespace Exceptions
 		}
 
         [Benchmark]
-		public void WithException ()
+		public void Unoptimized ()
 		{
 			for (int i = 0; i < ListSize; i++)
 			{
@@ -56,15 +65,9 @@ namespace Exceptions
 		}
 
         [Benchmark]
-		public void WithoutException ()
+		public void Optimized ()
 		{
-			for (int i = 0; i < ListSize; i++)
-			{
-				string? s = null;
-				int key = Numbers [i];
-				if (Lookup.ContainsKey (key))
-					s = Lookup [key];
-			}
+			// Put your optimized code here
 		}
 
 	}

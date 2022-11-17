@@ -6,10 +6,20 @@ using BenchmarkDotNet.Attributes;
 
 namespace Instantiation
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
+    [CsvExporter]
     public class Benchmarks
     {
+		// ==============================================================================
+		// Benchmarks
+		//
+		// Complete this benchmark class so that you can measure the performance of:
+		//   - Constucting an object by calling the constructor directly
+		//   - Contructing an object by using Activator.CreateInstance
+		//   - Constructing an object by using a dynamic method
+		//
+		// Which is the fastest in C#?
+		// ==============================================================================
+
 		public delegate object ConstructorDelegate();
 
         public ConstructorDelegate? constructor = null;
@@ -44,25 +54,23 @@ namespace Instantiation
         }
 
         [Benchmark]
+		public void UseDirect()
+		{
+            var obj = new System.Text.StringBuilder();
+		}
+
+        [Benchmark]
 		public void UseActivator()
 		{
-			Type type = typeof(System.Text.StringBuilder);
-            var obj = Activator.CreateInstance(type);
+			// Put code here that instantiates a StringBuilder by using Activator.CreateInstance
 		}
 
         [Benchmark]
 		public void UseDynamicMethod()
 		{
-            if (constructor == null)
-                throw new NullReferenceException("Constructor may not be null");
-            var obj = constructor();
+			// Put code here that instantiates a StringBuilder by calling the dynamic method delegate
 		}
 
-        [Benchmark]
-		public void UseDirect()
-		{
-            var obj = new System.Text.StringBuilder();
-		}
 
 	}
 }

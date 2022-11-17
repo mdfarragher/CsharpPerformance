@@ -5,45 +5,40 @@ using BenchmarkDotNet.Attributes;
 
 namespace ForVsForeach
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
+    [CsvExporter]
 	public class Benchmarks
 	{
+		// ==============================================================================
+		// Benchmarks
+		//
+		// Complete this benchmark class so that you can measure the performance of:
+		//   - The unoptimized code
+		//   - The optimized code
+		//
+		// How much faster can you make the code?
+		// ==============================================================================
+
 		[Params(1000000)]
 		public int Size;
 
 		// fields
 		public List<int>? TheList = null;
-		public int[]? TheArray = null;
 
         [GlobalSetup]
 		public void Setup ()
 		{
             TheList = new List<int> (Size);
-            TheArray = new int[Size];
 			Random random = new Random ();
 			for (int i = 0; i < Size; i++)
 			{
 				int number = random.Next (256);
 				TheList.Add (number);
-				TheArray [i] = number;
 			}
 
 		}
 
         [Benchmark]
-		public void ForOnList ()
-		{
-            if (TheList == null)
-                throw new NullReferenceException("TheList cannot be null");
-			for (int i = 0; i < Size; i++)
-			{
-				int result = TheList [i];
-			}
-		}
-
-        [Benchmark]
-		public void ForeachOnList ()
+		public void Unoptimized ()
 		{
             if (TheList == null)
                 throw new NullReferenceException("TheList cannot be null");
@@ -54,25 +49,9 @@ namespace ForVsForeach
 		}
 
         [Benchmark]
-		public void ForOnArray ()
+		public void Optimized ()
 		{
-            if (TheArray == null)
-                throw new NullReferenceException("TheArray cannot be null");
-			for (int i = 0; i < Size; i++)
-			{
-				int result = TheArray [i];
-			}
-		}
-
-        [Benchmark]
-		public void ForeachOnArray ()
-		{
-            if (TheArray == null)
-                throw new NullReferenceException("TheArray cannot be null");
-			foreach (int i in TheArray)
-			{
-				int result = i;
-			}
+			// Put your optimized code here
 		}
 
 	}

@@ -5,15 +5,24 @@ using BenchmarkDotNet.Attributes;
 
 namespace ListVsArray
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
+    [CsvExporter]
 	public class Benchmarks
 	{
+		// ==============================================================================
+		// Benchmarks
+		//
+		// Complete this benchmark class so that you can measure the performance of:
+		//   - The unoptimized code
+		//   - The optimized code
+		//
+		// How much faster can you make the code?
+		// ==============================================================================
+
         [Params(1000000)]
 		public int ArraySize;
 
         [Benchmark]
-		public void GenericList() 
+		public void Unoptimized() 
 		{
 			List<int> list = new List<int> (ArraySize);
 			for (int i = 0; i < ArraySize; i++) 
@@ -23,13 +32,9 @@ namespace ListVsArray
 		}
 
         [Benchmark]
-		public void Array() 
+		public void Optimized() 
 		{
-			int[] list = new int[ArraySize];
-			for (int i = 0; i < ArraySize; i++) 
-			{
-				list [i] = i;
-			}
+			// Put your optimized code here
 		}
 	}
 }

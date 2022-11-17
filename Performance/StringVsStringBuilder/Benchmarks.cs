@@ -5,15 +5,24 @@ using BenchmarkDotNet.Attributes;
 
 namespace StringVsStringBuilder
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
+    [CsvExporter]
     public class Benchmarks
 	{
-		[Params(1, 10, 25, 50)]
+		// ==============================================================================
+		// Benchmarks
+		//
+		// Complete this benchmark class so that you can measure the performance of:
+		//   - The unoptimized code
+		//   - The optimized code
+		//
+		// How much faster can you make the code?
+		// ==============================================================================
+
+		[Params(500)]
         public int Additions;
 
         [Benchmark]
-		public void AppendToString() 
+		public void Unoptimized() 
 		{
             string s = string.Empty;
             for (int j = 0; j < Additions; j++) 
@@ -23,13 +32,9 @@ namespace StringVsStringBuilder
 		}
 
         [Benchmark]
-		public void AppendToStringBuilder() 
+		public void Optimized() 
 		{
-            StringBuilder sb = new StringBuilder ();
-            for (int j = 0; j < Additions; j++) 
-            {
-                sb.Append("a");
-            }
+            // Put your optimized code here
 		}
 	}
 }
