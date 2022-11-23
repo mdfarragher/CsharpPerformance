@@ -48,7 +48,7 @@ namespace Arrays
 			{
 				for (int j = 0; j < ArraySize; j++)
 				{
-					list2 [i, j] = 1;
+					list2 [i, j] = i;
 				}
 			}
 		}
@@ -62,7 +62,7 @@ namespace Arrays
 			{
 				for (int j = 0; j < ArraySize; j++)
 				{
-					listj [i] [j] = 1;
+					listj [i] [j] = i;
 				}
 			}
 		}
@@ -77,10 +77,10 @@ namespace Arrays
                 for (int j = 0; j < ArraySize; j++) 
                 {
                     int index = ArraySize * i + j;
-                    list1 [index] = 1;
+                    list1 [index] = i;
                 }
             }
-      }
+        }
 
 	}
 }

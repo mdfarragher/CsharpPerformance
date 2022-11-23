@@ -42,7 +42,7 @@ namespace ForVsForeach
 			}
 		}
 
-        [Benchmark]
+        [Benchmark(Baseline = true)]
 		public void ForeachOnList ()
 		{
             if (TheList == null)

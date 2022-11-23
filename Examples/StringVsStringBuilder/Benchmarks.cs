@@ -9,7 +9,7 @@ namespace StringVsStringBuilder
     [RPlotExporter]
     public class Benchmarks
 	{
-		[Params(1, 10, 25, 50)]
+		[Params(5000)]
         public int Additions;
 
         [Benchmark]

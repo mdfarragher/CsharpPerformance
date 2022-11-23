@@ -13,7 +13,27 @@ namespace ListVsArray
 		public int ArraySize;
 
         [Benchmark]
+		public void ArrayList() 
+		{
+			ArrayList list = new ArrayList ();
+			for (int i = 0; i < ArraySize; i++) 
+			{
+				list.Add(i);
+			}
+		}
+
+        [Benchmark]
 		public void GenericList() 
+		{
+			List<int> list = new List<int> ();
+			for (int i = 0; i < ArraySize; i++) 
+			{
+				list.Add(i);
+			}
+		}
+
+        [Benchmark]
+		public void GenericListPresized() 
 		{
 			List<int> list = new List<int> (ArraySize);
 			for (int i = 0; i < ArraySize; i++) 
