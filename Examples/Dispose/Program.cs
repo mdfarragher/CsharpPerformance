@@ -12,21 +12,21 @@ namespace Dispose
 
         public static void Main(string[] args)
         {
-            Console.WriteLine($"Creating {ObjectsToCreate} worker objects...");
-            for (int i = 0; i < ObjectsToCreate; i++)
-            {
-                var obj = new ObjectWithoutDispose();
-                obj.DoWork();
-            }
-
-            // Console.WriteLine($"Creating {ObjectsToCreate} disposable worker objects...");
+            // Console.WriteLine($"Creating {ObjectsToCreate} worker objects...");
             // for (int i = 0; i < ObjectsToCreate; i++)
             // {
-            //     using (var obj = new ObjectWithDispose())
-            //     {
-            //         obj.DoWork();
-            //     }
+            //     var obj = new ObjectWithoutDispose();
+            //     obj.DoWork();
             // }
+
+            Console.WriteLine($"Creating {ObjectsToCreate} disposable worker objects...");
+            for (int i = 0; i < ObjectsToCreate; i++)
+            {
+                using (var obj = new ObjectWithDispose())
+                {
+                    obj.DoWork();
+                }
+            }
 
             Console.WriteLine("Waiting for objects to finalize...");
             Thread.Sleep(1000);

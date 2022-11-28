@@ -39,7 +39,7 @@ namespace Delegates
 
 
 		// Call Add1 and Add2 manually
-        [Benchmark]
+        [Benchmark(Baseline = true)]
 		public void CallDirect ()
 		{
             int result;

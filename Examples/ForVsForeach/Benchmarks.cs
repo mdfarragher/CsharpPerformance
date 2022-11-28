@@ -9,7 +9,7 @@ namespace ForVsForeach
     [RPlotExporter]
 	public class Benchmarks
 	{
-		[Params(1000000)]
+		[Params(1000000) ]
 		public int Size;
 
 		// fields

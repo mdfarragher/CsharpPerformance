@@ -7,7 +7,7 @@ namespace Arrays
 	{
 		public static void Main (string[] args)
 		{
-            // run benchmarks
+            // run  benchmarks
             BenchmarkRunner.Run<Benchmarks>();
 		}
 	}

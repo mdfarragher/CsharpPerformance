@@ -35,7 +35,7 @@ namespace Pointers
 				{
 					for (int i = 0; i < image.Length;)
 					{
-						byte grey = (byte)(.299 * image [i + 2] + .587 * image [i + 1] + .114 * image [i]);
+						byte grey = (byte)(.299 * p [i + 2] + .587 * p [i + 1] + .114 * p [i]);
 						p [i] = grey;
 						p [i + 1] = grey;
 						p [i + 2] = grey;
@@ -57,10 +57,15 @@ namespace Pointers
 					int stopAddress = (int)p + ArraySize * ArraySize * 3;
 					while ((int)p != stopAddress)
 					{
-						byte grey = (byte)(.299 * p [2] + .587 * p [1] + .114 * p [0]);
-						*p = grey;
-						*(++p) = grey;
-						*(++p) = grey;
+                        var pRed = p;
+                        p++;
+                        var pGreen = p;
+                        p++;
+                        var pBlue = p;
+						byte grey = (byte)(.299 * (*pBlue) + .587 * (*pGreen) + .114 * (*pRed));
+						*pRed = grey;
+						*pGreen = grey;
+						*pBlue = grey;
 						p++;
 					}
 				}
