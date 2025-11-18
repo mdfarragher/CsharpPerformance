@@ -2,3 +2,10 @@
 **/obj/*
 **/BenchmarkDotNet.Artifacts/*
 *Lectures and Labs.xlsx
+Assignments/GenerationZero/output.txt
+Solutions/Arrays/.idea/.idea.Arrays/.idea
+Solutions/Dispose/output1.txt
+Solutions/Dispose/output2.txt
+Solutions/Finalization/outpout.txt
+Solutions/GenerationZero/output.txt
+Solutions/ObjectPool/outpout.txt
