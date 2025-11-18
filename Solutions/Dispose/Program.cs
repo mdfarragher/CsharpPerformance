@@ -12,19 +12,27 @@ namespace Dispose
 
         public static void Main(string[] args)
         {
-            // Console.WriteLine($"Creating {ObjectsToCreate} worker objects...");
-            // for (int i = 0; i < ObjectsToCreate; i++)
-            // {
-            //     var obj = new ObjectWithoutDispose();
-            //     obj.DoWork();
-            // }
+            Console.WriteLine("Create [1] nondisposable or [2] disposable objects?");
+            var input = Console.ReadLine();
 
-            Console.WriteLine($"Creating {ObjectsToCreate} disposable worker objects...");
-            for (int i = 0; i < ObjectsToCreate; i++)
+            if (input == "1")
             {
-                using (var obj = new ObjectWithDispose())
+                Console.WriteLine($"Creating {ObjectsToCreate} worker objects...");
+                for (int i = 0; i < ObjectsToCreate; i++)
                 {
+                    var obj = new ObjectWithoutDispose();
                     obj.DoWork();
+                }
+            }
+            else if (input == "2")
+            {
+                Console.WriteLine($"Creating {ObjectsToCreate} disposable worker objects...");
+                for (int i = 0; i < ObjectsToCreate; i++)
+                {
+                    using (var obj = new ObjectWithDispose())
+                    {
+                        obj.DoWork();
+                    }
                 }
             }
 

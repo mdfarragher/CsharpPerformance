@@ -4,8 +4,6 @@ using BenchmarkDotNet.Attributes;
 
 namespace Arrays
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
 	public class Benchmarks
 	{
         [Params(5000)]

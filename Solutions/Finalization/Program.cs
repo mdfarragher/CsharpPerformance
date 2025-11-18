@@ -8,14 +8,9 @@ namespace Finalization
         {
             // create objects
             int counter = 0;
-            Console.WriteLine("Creating objects...");
-            while (!Console.KeyAvailable)
+            while (counter < 100000)
             { 
                 var obj = new MyObject(counter++);
-
-                // print progress
-                if (counter % 10000 == 0)
-                    Console.WriteLine($"{counter} objects created");
             }
         }
     }

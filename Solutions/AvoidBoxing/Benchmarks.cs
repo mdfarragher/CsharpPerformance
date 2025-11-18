@@ -3,8 +3,6 @@ using BenchmarkDotNet.Attributes;
 
 namespace AvoidBoxing
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
 	public class Benchmarks
 	{
 		// constants

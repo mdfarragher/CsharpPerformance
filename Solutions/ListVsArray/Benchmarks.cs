@@ -5,8 +5,6 @@ using BenchmarkDotNet.Attributes;
 
 namespace ListVsArray
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
 	public class Benchmarks
 	{
         [Params(1000000)]

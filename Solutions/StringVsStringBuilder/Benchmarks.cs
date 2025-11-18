@@ -5,8 +5,6 @@ using BenchmarkDotNet.Attributes;
 
 namespace StringVsStringBuilder
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
     public class Benchmarks
 	{
 		[Params(5000)]

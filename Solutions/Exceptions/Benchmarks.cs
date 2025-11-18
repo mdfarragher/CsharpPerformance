@@ -4,8 +4,6 @@ using BenchmarkDotNet.Attributes;
 
 namespace Exceptions
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
     public class Benchmarks
 	{
 		// constants
@@ -35,7 +33,7 @@ namespace Exceptions
 			Random random = new Random ();
 			for (int i = 0; i < ListSize; i++)
 			{
-				Numbers.Add (random.Next (11)); // 10% is out of bounds
+				Numbers.Add (random.Next (11)); // 9% is out of bounds
 			}
 		}
 

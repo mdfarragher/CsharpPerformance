@@ -4,46 +4,56 @@ using BenchmarkDotNet.Attributes;
 
 namespace ObjectPool
 {
+    [MemoryDiagnoser]
     public class Benchmarks
 	{
 		// constants
 		public int BufferSize = 1000000;
-		public int ArrayIterations = 10000;
+
+		public int ArrayIterations = 1000;
 
         public const int NumberOfPooledObjects = 10;
 
-        public bool[] IsInUse = new bool[NumberOfPooledObjects];
+        public int poolIndex = 0;
 
-        public byte[][] Pool = new byte[NumberOfPooledObjects][];
+        public bool[]? IsInUse = null;
+
+        public byte[][]? Pool = null;
+
+        [GlobalSetup]
+        public void Setup()
+        {
+            IsInUse = new bool[NumberOfPooledObjects];
+            Pool = new byte[NumberOfPooledObjects][];
+        }
 
         public byte[] GetBuffer()
         {
             // allocate and return a new byte buffer
-            Interlocked.Increment(ref MainClass.BufferAllocations);
             return new byte[BufferSize];
         }
 
         public byte[] GetPooledBuffer()
         {
-            // find the first free buffer
-            for (int i = 0; i < NumberOfPooledObjects; i++)
-            {
-                if (!IsInUse[i])
-                {
-                    // allocate buffer on demand
-                    if (Pool[i] == null)
-                    {
-                        Interlocked.Increment(ref MainClass.BufferAllocations);
-                        Pool[i] = new byte[BufferSize];
-                        return Pool[i];
-                    }
+            // grab the next buffer (it's always free)
+            var i = poolIndex++ % NumberOfPooledObjects;
 
-                    // or clear an existing buffer and return
-                    else
-                    {
-                        Array.Clear(Pool[i]);
-                        return Pool[i];
-                    }
+            if (!IsInUse[i])
+            {
+                // allocate buffer on demand
+                if (Pool[i] == null)
+                {
+                    Pool[i] = new byte[BufferSize];
+                    IsInUse[i] = true;
+                    return Pool[i];
+                }
+
+                // or clear an existing buffer and return
+                else
+                {
+                    Array.Clear(Pool[i]);
+                    IsInUse[i] = true;
+                    return Pool[i];
                 }
             }
 

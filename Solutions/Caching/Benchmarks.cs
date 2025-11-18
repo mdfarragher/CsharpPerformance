@@ -5,8 +5,6 @@ using BenchmarkDotNet.Attributes;
 
 namespace Caching
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
 	public class Benchmarks
 	{
         public int TotalToCalculate = 40;

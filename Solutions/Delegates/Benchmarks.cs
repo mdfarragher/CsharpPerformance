@@ -4,8 +4,6 @@ using BenchmarkDotNet.Attributes;
 
 namespace Delegates
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
 	public class Benchmarks
 	{
 		// declare delegate
@@ -51,8 +49,6 @@ namespace Delegates
         [Benchmark]
 		public void UnicastDelegate ()
 		{
-            if (add1 == null || add2 == null)
-                throw new NullReferenceException("add1 or add2 cannot be null");
             int result;
             add1 (1234, 2345, out result);
             add2 (1234, 2345, out result);
@@ -62,8 +58,6 @@ namespace Delegates
         [Benchmark]
 		public void MulticastDelegate ()
 		{
-            if (multiAdd == null)
-                throw new NullReferenceException("multiAdd cannot be null");
 			int result = 0;
             multiAdd (1234, 2345, out result);
 		}

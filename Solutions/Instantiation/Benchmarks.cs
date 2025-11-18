@@ -6,8 +6,6 @@ using BenchmarkDotNet.Attributes;
 
 namespace Instantiation
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
     public class Benchmarks
     {
 		public delegate object ConstructorDelegate();
@@ -17,11 +15,7 @@ namespace Instantiation
         protected ConstructorDelegate GetConstructor(string typeName)
 		{
 			Type? t = Type.GetType(typeName);
-            if (t == null)
-                throw new NullReferenceException("t cannot be null");
 			ConstructorInfo? ctor = t?.GetConstructor(new Type[0]);
-            if (ctor == null)
-                throw new NullReferenceException("Ctor cannot be null");
 
 			// create a new dynamic method that constructs and returns the type
 			string methodName = t.Name + "Ctor";
@@ -53,8 +47,6 @@ namespace Instantiation
         [Benchmark]
 		public void UseDynamicMethod()
 		{
-            if (constructor == null)
-                throw new NullReferenceException("Constructor may not be null");
             var obj = constructor();
 		}
 

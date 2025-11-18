@@ -5,8 +5,6 @@ using BenchmarkDotNet.Attributes;
 
 namespace CopyMemory
 {
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
 	public class Benchmarks
 	{
         private const int BUFFER_SIZE = 1_000_000;
@@ -24,8 +22,6 @@ namespace CopyMemory
         [Benchmark()]
 		public void UseArrays()
 		{
-            if (buffer1 == null || buffer2 == null)
-                throw new NullReferenceException("Buffer1 or buffer2 cannot be null");
             for (int j = 0; j < BUFFER_SIZE; j++)
             {
                 buffer2[j] = buffer1[j];
@@ -35,8 +31,6 @@ namespace CopyMemory
         [Benchmark()]
 		public unsafe void UsePointers()
 		{
-            if (buffer1 == null || buffer2 == null)
-                throw new NullReferenceException("Buffer1 or buffer2 cannot be null");
             fixed (byte* fixed1 = &buffer1[0])
             fixed (byte* fixed2 = &buffer2[0])
 			{
@@ -52,8 +46,6 @@ namespace CopyMemory
         [Benchmark()]
 		public void UseCopy()
 		{
-            if (buffer1 == null || buffer2 == null)
-                throw new NullReferenceException("Buffer1 or buffer2 cannot be null");
             buffer1.CopyTo(buffer2, 0);
 		}
 

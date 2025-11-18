@@ -17,8 +17,7 @@ namespace StructsVsClasses
         public int Y = 0;
     }
 
-    [CsvMeasurementsExporter]
-    [RPlotExporter]
+    [MemoryDiagnoser]
 	public class Benchmarks
 	{
 		public int ListSize = 1000000;
@@ -27,43 +26,39 @@ namespace StructsVsClasses
         public List<PointClass>? classList = null;
 
 
-        [GlobalSetup]
-        public void Setup()
-        {
-			structList = new List<PointStruct>(ListSize);
-			classList = new List<PointClass>(ListSize);
-            for (int i=0; i < ListSize; i++)
-            {
-                structList.Add(new PointStruct());
-                classList.Add(new PointClass());
-            }
-        }
-
         [Benchmark]
 		public void UseStructs() 
 		{
-            if (structList == null)
-                throw new NullReferenceException("structList cannot be null");
+			structList = new List<PointStruct>(ListSize);
+            for (int i=0; i < ListSize; i++)
+            {
+                structList.Add(new PointStruct());
+            }
+
             int result = 0;
 			for (int i = 0; i < ListSize; i++) 
 			{
 				var point = structList[i];
-                result = result + point.X;
-                result = result + point.Y;
+                result += point.X;
+                result += point.Y;
 			}
 		}
 
         [Benchmark]
 		public void UseClasses() 
 		{
-            if (classList == null)
-                throw new NullReferenceException("classList cannot be null");
+			classList = new List<PointClass>(ListSize);
+            for (int i=0; i < ListSize; i++)
+            {
+                classList.Add(new PointClass());
+            }
+
             int result = 0;
 			for (int i = 0; i < ListSize; i++) 
 			{
 				var point = classList[i];
-                result = result + point.X;
-                result = result + point.Y;
+                result += point.X;
+                result += point.Y;
 			}
 		}
 
